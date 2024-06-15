@@ -22,13 +22,15 @@ jobs:
         with:
           node-version: "20.x"
           registry-url: https://registry.npmjs.org/
+      - name: 更新版本
+        run: |
+           npm version patch
         
       # 发布 NPM 包
       - name: Publish Package
         run: |
           git config --global user.email "aixbox4068@gmail.com"
           git config --global user.name "Aixboxi"
-          npm version patch
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
